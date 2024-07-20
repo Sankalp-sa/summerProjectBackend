@@ -3,9 +3,8 @@ import { Request, Response, NextFunction } from "express";
 import Test from "../models/Test";
 import Question from "../models/Question";
 import StudentResponse from "../models/response";
-import { io } from "../app";
+import { io } from "../index";
 import { User } from "../models/User";
-import test from "node:test";
 
 export const createtest = async (
   req: Request,

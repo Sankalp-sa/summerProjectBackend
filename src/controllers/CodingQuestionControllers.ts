@@ -370,4 +370,8 @@ export const getSinglePracticeQuestionController = async (req:Request,res:Respon
       practiceStatus: codingQuestion.practiceStatus,
     });
 
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
+
 }

@@ -2,7 +2,7 @@ import { getApplication } from "./applicationControllers";
 // import { deNotification } from './notificationControllers';
 import { NextFunction, Request, Response } from "express";
 import Notification from "../models/Notification";
-import { io } from "../app";
+import { io } from "../index";
 import Application from "../models/Application";
 import StudentResponse from "../models/response";
 
