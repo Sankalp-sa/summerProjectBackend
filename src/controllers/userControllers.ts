@@ -57,7 +57,6 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: process.env.DOMAIN,
             signed: true,
             httpOnly: true,
             secure: true,
@@ -71,7 +70,6 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: process.env.DOMAIN,
             expires,
             httpOnly: true,
             signed: true,
@@ -116,7 +114,6 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: process.env.DOMAIN,
             signed: true,
             httpOnly: true,
             secure: true,
@@ -130,7 +127,6 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: process.env.DOMAIN,
             expires,
             httpOnly: true,
             signed: true,
@@ -237,7 +233,6 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: process.env.DOMAIN,
             signed: true,
             httpOnly: true,
             secure: true,
