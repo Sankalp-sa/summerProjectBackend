@@ -57,7 +57,7 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
+            domain: "summerprojectbackend.onrender.com",
             signed: true,
             httpOnly: true
         })
@@ -69,7 +69,7 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "localhost",
+            domain: "summerprojectbackend.onrender.com",
             expires,
             httpOnly: true,
             signed: true
@@ -112,7 +112,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
+            domain: "summerprojectbackend.onrender.com",
             signed: true,
             httpOnly: true
         })
@@ -124,7 +124,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "localhost",
+            domain: "summerprojectbackend.onrender.com",
             expires,
             httpOnly: true,
             signed: true
@@ -229,7 +229,7 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
+            domain: "summerprojectbackend.onrender.com",
             signed: true,
             httpOnly: true
         })
