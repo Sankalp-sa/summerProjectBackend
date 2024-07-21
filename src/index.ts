@@ -13,9 +13,15 @@ dotenv.config();
 const app = express();
 const server = createServer(app);
 
+const allowedOrigins = [
+  'https://summerprojectfrontend.onrender.com',
+  'http://localhost:5173',  // Add your local development URL
+  // Add any other allowed origins here
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "https://summerprojectbackend.onrender.com",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
@@ -36,8 +42,16 @@ io.on("connection", (socket) => {
 
 // CORS configuration
 app.use(cors({
-  origin: "https://summerprojectbackend.onrender.com",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json({ limit: "50mb" }));
@@ -45,6 +59,12 @@ app.use(cookieParser(process.env.COOKIE_PARSER_SECRET));
 app.use(express.static("public"));
 
 app.use(morgan("dev"));
+
+// Set necessary headers for all responses
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.use("/api/v1", router);
 
