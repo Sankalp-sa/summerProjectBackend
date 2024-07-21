@@ -15,7 +15,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://summerprojectbackend.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
 // CORS configuration
 app.use(cors({
-  origin: "*",
+  origin: "https://summerprojectbackend.onrender.com",
   credentials: true,
 }));
 

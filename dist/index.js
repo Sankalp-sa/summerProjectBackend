@@ -18,7 +18,7 @@ const app = (0, express_1.default)();
 const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://summerprojectbackend.onrender.com",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     },
@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 });
 // CORS configuration
 app.use((0, cors_1.default)({
-    origin: "*",
+    origin: "https://summerprojectbackend.onrender.com",
     credentials: true,
 }));
 app.use(express_1.default.json({ limit: "50mb" }));
