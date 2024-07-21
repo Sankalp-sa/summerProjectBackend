@@ -43,19 +43,23 @@ const userSignUp = async (req, res, next) => {
         await user.save();
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            domain: process.env.DOMAIN
         });
         const token = (0, tokenUtils_js_1.createToken)(user._id.toString(), user.email);
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "localhost",
             expires,
             httpOnly: true,
-            signed: true
+            signed: true,
+            secure: true,
+            sameSite: "none",
+            domain: process.env.DOMAIN
         });
         return res.status(201).json({
             message: "User created successfully",
@@ -87,19 +91,23 @@ const userLogin = async (req, res, next) => {
         // pending_appli_noti(req,res);
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            domain: process.env.DOMAIN
         });
         const token = (0, tokenUtils_js_1.createToken)(user._id.toString(), user.email);
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "localhost",
             expires,
             httpOnly: true,
-            signed: true
+            signed: true,
+            secure: true,
+            sameSite: "none",
+            domain: process.env.DOMAIN
         });
         res.status(200).json({
             ok: true,
@@ -180,9 +188,11 @@ const userLogout = async (req, res, next) => {
     try {
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "localhost",
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            domain: process.env.DOMAIN
         });
         res.status(200).json({
             ok: true,

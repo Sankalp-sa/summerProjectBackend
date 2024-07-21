@@ -19,7 +19,7 @@ const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server, {
     cors: {
         origin: "*",
-        methods: ["GET", "POST"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     },
 });
@@ -29,19 +29,22 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("Socket disconnected", socket.id);
     });
-    // Join user-specific room
     socket.on("joinRoom", (userId) => {
         console.log(userId + " joined the room");
         socket.join(userId);
     });
 });
-app.use((0, cors_1.default)({ origin: "http://localhost:5173", credentials: true }));
+// CORS configuration
+app.use((0, cors_1.default)({
+    origin: "*",
+    credentials: true,
+}));
 app.use(express_1.default.json({ limit: "50mb" }));
 app.use((0, cookie_parser_1.default)(process.env.COOKIE_PARSER_SECRET));
 app.use(express_1.default.static("public"));
 app.use((0, morgan_1.default)("dev"));
 app.use("/api/v1", mainRoute_js_1.default);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, async () => {
     try {
         await (0, connection_js_1.connectToDb)();
