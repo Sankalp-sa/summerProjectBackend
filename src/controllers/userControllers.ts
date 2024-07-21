@@ -57,9 +57,11 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "summerprojectbackend.onrender.com",
+            domain: process.env.DOMAIN,
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
         })
 
         const token = createToken(user._id.toString(), user.email);
@@ -69,10 +71,12 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "summerprojectbackend.onrender.com",
+            domain: process.env.DOMAIN,
             expires,
             httpOnly: true,
-            signed: true
+            signed: true,
+            secure: true,
+            sameSite: "none"
         })
 
         return res.status(201).json({
@@ -112,9 +116,11 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "summerprojectbackend.onrender.com",
+            domain: process.env.DOMAIN,
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
         })
 
         const token = createToken(user._id.toString(), user.email);
@@ -124,10 +130,12 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
         res.cookie("auth_token", token, {
             path: "/",
-            domain: "summerprojectbackend.onrender.com",
+            domain: process.env.DOMAIN,
             expires,
             httpOnly: true,
-            signed: true
+            signed: true,
+            secure: true,
+            sameSite: "none"
         })
 
         res.status(200).json({
@@ -229,9 +237,11 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
 
         res.clearCookie("auth_token", {
             path: "/",
-            domain: "summerprojectbackend.onrender.com",
+            domain: process.env.DOMAIN,
             signed: true,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
         })
 
         res.status(200).json({
