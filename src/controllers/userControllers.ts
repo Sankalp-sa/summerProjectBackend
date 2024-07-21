@@ -60,7 +60,8 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
             signed: true,
             httpOnly: true,
             secure: true,
-            sameSite: "none"
+            sameSite: "none",
+            domain: ""
         })
 
         const token = createToken(user._id.toString(), user.email);
@@ -74,7 +75,8 @@ export const userSignUp = async (req: Request, res: Response, next: NextFunction
             httpOnly: true,
             signed: true,
             secure: true,
-            sameSite: "none"
+            sameSite: "none",
+            domain: ""
         })
 
         return res.status(201).json({
@@ -117,7 +119,8 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
             signed: true,
             httpOnly: true,
             secure: true,
-            sameSite: "none"
+            sameSite: "none",
+            domain: ""
         })
 
         const token = createToken(user._id.toString(), user.email);
@@ -131,7 +134,8 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
             httpOnly: true,
             signed: true,
             secure: true,
-            sameSite: "none"
+            sameSite: "none",
+            domain: ""
         })
 
         res.status(200).json({
@@ -236,7 +240,8 @@ export const userLogout = async (req: Request, res: Response, next: NextFunction
             signed: true,
             httpOnly: true,
             secure: true,
-            sameSite: "none"
+            sameSite: "none",
+            domain: ""
         })
 
         res.status(200).json({
