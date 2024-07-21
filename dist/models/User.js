@@ -1,0 +1,56 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+const userSchema = new mongoose_1.default.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true,
+        enum: ['male', 'female', 'other']
+    },
+    dob: {
+        type: Date,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    Alt_phone: {
+        type: String
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true,
+        enum: ['Student', 'Admin', 'Faculty'],
+        default: 'Student'
+    }
+});
+const User = mongoose_1.default.model('User', userSchema);
+exports.User = User;
+//# sourceMappingURL=User.js.map
